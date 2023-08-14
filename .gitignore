@@ -1,0 +1,25 @@
+# copied library files
+testBML.so
+BioCro.so
+
+# executable Make products
+test_dynamical_system
+test_biocro
+test_harmonic_oscillator
+segfault_test
+test_repeat_runs
+test_module_evaluation
+test_all
+test_module_creator
+test_module_factory_functions
+test_module_object
+test_multiple_module_libraries
+test_simulator
+
+# Doxygen output
+html/
+latex/
+
+# object files
+*.o
+

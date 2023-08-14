@@ -1,0 +1,50 @@
+To use this test suite in a BioCro source tree:
+
+1. Install GoogleTest version 1.13.0 or later if you haven't installed
+   it already.  On macOS, it may be installed with Homebrew by running
+
+   brew install googletest
+
+2. Clone this repository as a subdirectory of the root directory of
+   a BioCro source tree:
+
+   cd <root of a BioCro package source tree>
+   git clone git@github.com:gsrohde/BioCroInterface.git
+
+3. CD to the repository root and initialize and recursively update its
+   submodule:
+
+   cd BioCroInterface
+   git submodule update --init --recursive
+
+4. Compile the testBML module library by installing the R pacakge:
+
+   cd testBML
+   R CMD INSTALL .
+
+[To-Do: Add a Make file to the testBML src directory that will make
+testBML.so without installing the corresponding R package.]
+
+5. Make the tests and run them:
+
+   cd ..
+   make
+
+
+The command *make* will both compile the tests and then run them.
+Once the tests are compiled, you can also run them directly with the
+command
+
+   ./test_all
+
+This allows for the use of various GoogleTest test-running options.
+For example,
+
+   ./test_all --gtest_also_run_disabled_tests
+
+will run the tests that are currently disabled (and that will
+currently fail).
+
+The Make file also contains targets for building individual test
+files, as well as convenience numeric targets for building and then
+running tests.  Inspect the Make file for details.
