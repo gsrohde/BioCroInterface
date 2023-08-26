@@ -36,8 +36,9 @@ run_all_tests: test_all
 6: run_test_module_factory_functions
 7: run_test_module_object
 8: run_test_multiple_module_libraries
-9: run_test_repeat_runs
-10: run_test_simulator
+9: run_test_poisson_density
+10: run_test_repeat_runs
+11: run_test_simulator
 
 $(RUN_TARGETS) : run_% : %
 	./$<
@@ -70,8 +71,7 @@ test_multiple_module_libraries: $(EXTERNAL_BIOCRO_LIB)
 test_simulator.o test_dynamical_system.o test_harmonic_oscillator.o \
     test_repeat_runs.o: print_result.h
 test_harmonic_oscillator.o test_repeat_runs.o test_module_evaluation.o \
-    test_module_factory_functions.o test_module_creator.o \
-    test_module_object.o: BioCro.h
+    test_module_factory_functions.o test_module_creator.o: BioCro.h
 test_dynamical_system.o test_simulator.o test_multiple_module_libraries.o: \
     BioCro_Extended.h
 test_module_evaluation.o test_harmonic_oscillator.o Random.o: Random.h

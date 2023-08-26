@@ -216,7 +216,7 @@ Here are a few notes on the individual test files:
    causes a segmentation fault without itself crashing, and how it can
    detect segmentation faults.
 
-* `run_test_simulator.cpp` (build and run with `make 10`)
+* `run_test_simulator.cpp` (build and run with `make 11`)
 
    This file merely demonstrates basic usage of the `Simulator` class.
 
@@ -279,7 +279,25 @@ Here are a few notes on the individual test files:
    Here, using the standard BioCro module library together with a
    user-defined module library is demonstrated.
 
-* `test_repeat_runs.cpp` (build and run with `make 9`)
+* `test_poisson_density.cpp` (build and run with `make 9`)
+
+   This tests the `poisson_density` function defined in the source
+   file `src/module_library/AuxBioCro.cpp`.
+
+   This test is here for two reasons.  First, it serves as a useful
+   example of a unit test, testing that a single but non-trivial
+   function behaves as expected.  Second, I actually used this in some
+   test-driven development: I wrote a test to compare results from
+   this function with the numbers in a published table as a means of
+   improving a less-than-ideal implementation of this function.  (In
+   the process, I uncovered some erroneous entries in the published
+   table itself!)
+
+   Note that `poisson_density` is not declared in any of the BioCro
+   C++ libraries header files, so I had to declare the function in the
+   test file itself.
+
+* `test_repeat_runs.cpp` (build and run with `make 10`)
 
    The tests in this file demonstrate a quirk in objects of class
    `Simulator` whereby when they are run a second time, the drivers
