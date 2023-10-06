@@ -88,6 +88,13 @@ class DynamicalSystemTest : public ::testing::Test {
         drivers,
         steady_state_modules,
         derivative_modules);
+
+    BioCro::Dynamical_system bad_ds = BioCro::make_dynamical_system(
+        {},
+        parameters,
+        {},
+        {},
+        {});
 };
 
 // Tests
@@ -96,6 +103,15 @@ class DynamicalSystemTest : public ::testing::Test {
 // simulation as determined by the length of the drivers.
 TEST_F(DynamicalSystemTest, ntimesIsCorrect) {
     EXPECT_EQ(ds->get_ntimes(), drivers[driver_variable_name].size());
+}
+
+// get_ntimes() should fail gracefully and not cause a segfault when
+// called on a system with an empty drivers mapping.  THIS IS
+// CURRENTLY DISABLED BECAUSE THE TEST FAILS.
+TEST_F(DynamicalSystemTest, DISABLED_EmptyDriversShouldNotCauseSegfault) {
+    ASSERT_EXIT((bad_ds->get_ntimes(), exit(0)),
+                ::testing::ExitedWithCode(0),
+                ".*");
 }
 
 // The system we've defined shouldn't require an Euler solver.
